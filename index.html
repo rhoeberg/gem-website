@@ -9,10 +9,8 @@
   <meta name="description" content="A simple HTML5 Template for new projects.">
   <meta name="author" content="GEM">
 
-  <meta property="og:title" content="A Basic HTML5 Template">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.sitepoint.com/a-basic-html5-template/">
-  <meta property="og:description" content="A simple HTML5 Template for new projects.">
+  <meta property="og:title" content="GEM homepage">
+  <meta property="og:description" content="homepage of the GEM collective project"
   <meta property="og:image" content="image.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,52 +20,40 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
- <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
-
   <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial;
-  font-size: 17px;
-  background-color:black;
-}
-
-	/* Style the video: 100% width and height to cover the entire window */
-	#myVideo {
-		/* position: absolute; */
-		object-fit: contain;
-		/* top: 50%; */
-		/* left: 50%; */
-		/* min-width: 100%; */
-		/* min-height: 100%; */
-		/* transform: translate(-50%, -50%); */
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  /* min-width: 100%;  */
-  /* min-height: 100%; */
-  width: 100%; 
-  height: 100%;
+	* {
+		box-sizing: border-box;
 	}
 
-	/* Add some content at the bottom of the video/page */
-	.content {
+	body {
+		margin: 0;
+		font-family: Arial;
+		font-size: 17px;
+		background-color:black;
+	}
+
+	#myVideo {
 		position: fixed;
+		object-fit: contain;
+		right: 0;
 		bottom: 0;
+		width: 100%; 
+		height: 100%;
+	}
+
+	#content {
+		position: fixed;
+		left: calc(50% - 100px);
+		bottom: 50%;
 		background: rgba(0, 0, 0, 0.5);
 		color: #f1f1f1;
 		width: 100%;
 		padding: 20px;
 	}
 
-	/* Style the button used to pause/play the video */
-	#myBtn {
+	#soundBtn {
 		width: 200px;
-		font-size: 18px;
+		font-size: 30px;
 		padding: 10px;
 		border: none;
 		background: #000;
@@ -75,42 +61,43 @@ body {
 		cursor: pointer;
 	}
 
-	#myBtn:hover {
+	#soundBtn:hover {
 		background: #ddd;
 		color: black;
 	}
+
   </style>
 
 </head>
 
 <body>
-
-  <video autoplay muted loop id="myVideo">
+  <video muted loop id="myVideo">
 	<source src="trailer.mp4" type="video/mp4">
   </video>
 
-  <button id="myBtn" onclick="myFunction()">Pause</button>
+  <div id="content">
+	<button id="soundBtn" onclick="start()">enter</button>
+  </div>
 
-  <!-- <script src="js/scripts.js"></script> -->
   <script>
-	// Get the video
 	var video = document.getElementById("myVideo");
+	var content = document.getElementById("content");
 
-	// Get the button
-	var btn = document.getElementById("myBtn");
-
-	// Pause and play the video, and change the button text
-	function myFunction() {
+	function pause() {
 		if (video.paused) {
 			video.play();
-			video.muted = false;
-			btn.innerHTML = "Pause";
 		} else {
 			video.pause();
-			video.muted = true;
-			btn.innerHTML = "Play";
 		}
 	}
+
+	function start() {
+		video.muted = false;
+		video.play();
+		content.hidden = true;
+	}
+
+	video.addEventListener('click', pause, false);
   </script>
 </body>
 </html>
